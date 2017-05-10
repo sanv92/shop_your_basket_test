@@ -1,0 +1,14 @@
+header[role="banner"] h1 a {
+	background-image: url('images/logo.png')
+}
+
+form[name="cost"] #submit input {
+
+	-webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -o-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -khtml-border-radius: .3em;
+	border-radius: .3em;
+	behavior: url('PIE.php');
+}

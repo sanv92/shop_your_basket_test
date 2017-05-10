@@ -1,0 +1,79 @@
+1.
+Как это условие проверяет что равно 0?
+если мы даже не проверяем ничем. ПОнимаю там a == 0 or a === 0
+а тут просто условие if. Консоль пишет что оно равно 0 и он как-то понимает это и пропускает всё что не минус. Странно это какая то фича которую не знал побясни плиз.
+if (shopListObj.list[index].count) {
+	
+2.
+	var vat = subt / 100 * shopListObj.tax;
+как он это считает просто я бы записал вот так это
+	var vat = subt * shopListObj.tax / 100; or	var vat = (subt * shopListObj.tax) / 100;
+тут не понятно как у тебя считает ведь он умнажает на
+15,95 * 20%
+-----------
+100
+по сути так поэтому твою смотрю всё иначе.
+
+
+	
+var shopList = {
+	tax: 20,
+	list: [
+		{ name: 'Cotton T-Shirt, Medium', count: 1, price: 1.99 },
+		{ name: 'Baseball Cap, One Size', count: 2, price: 5.98 },
+		{ name: 'Swim Shorts, Medium', count: 1, price: 3.99 }
+	]
+};
+
+function ShopClass(shopListObj) {
+
+  
+  var increment = function(id, elm) {
+    var index = id - 1;
+    shopListObj.list[index].count += 1;
+    calc(index , elm);
+  },
+	    decrement = function(id, elm) {
+        var index = id - 1;
+        if (shopListObj.list[index].count) { //если каунт не равен нулю то уменьшаем его
+          shopListObj.list[index].count -= 1;
+        }
+        calc(index , elm);
+      },
+      calc =   function (index, elm) {
+    //debugger;
+    var base = $(elm).closest('li');
+    var list = shopListObj.list[index];
+    var t_price = list.count * list.price;
+    var subt = ( function () {
+      var price = 0;
+	    $(shopListObj.list).each(function(index, item){
+        price += item.count * item.price;
+      });
+      return price;
+    }() );
+    var vat = subt / 100 * shopListObj.tax;
+    var total = subt+vat;
+
+    //cost
+    base.find('.t_price').text(t_price.toFixed(2));
+    //count
+    base.find('[name="count[]"]').val(list.count);
+    //subtotal
+    $('#sub_total').text(subt.toFixed(2));
+    //vat
+    $('#vat').text(vat.toFixed(2));
+    //total
+    $('#total').text(total.toFixed(2));
+  };
+  
+  return {
+    increment: increment,
+    decrement: decrement,
+    calc: calc
+  };
+}
+
+var shop = new ShopClass(shopList);
+
+console.log();

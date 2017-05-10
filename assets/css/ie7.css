@@ -1,0 +1,24 @@
+.p_list .title li {
+	margin-left: -1px;
+}
+.p_list .list li > p,
+.p_list .list li > div,
+.p_list .list li > span,
+.p_list .list li .count,
+.p_list .list li a.rem {
+	float: left;
+	margin-left: -4px;
+	text-align: left;
+}
+
+.p_list .list li .count + div {
+	margin-left: -20px;
+	text-align: center;
+}
+
+.p_list .list li .count label {
+	margin-right: 0;
+}
+.p_list .list li .count label + label {
+	margin-top: 1px;
+}
